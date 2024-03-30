@@ -1,10 +1,3 @@
-# Stackoverflow-Clone-MERN
-
-## Updates:
-  - **Integrated AI chatbot using OpenAI**
-  - ***Chatbot won't give response as the free trial got expired on 1 June 2023***
-  
-
 
 ### How to run the application locally: 
  
@@ -20,4 +13,4 @@
     - move to **server** folder using command `cd server` <br> Then use command `npm start` to start the server.
     - move to **client** folder using command `cd client` <br> Then use command `npm start` to start the application.
 
-### Give it a star if helpful!
+
