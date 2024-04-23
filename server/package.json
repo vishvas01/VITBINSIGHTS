@@ -11,6 +11,7 @@
   "author": "Vishvas Patel",
   "license": "ISC",
   "dependencies": {
+    "nodemon": "^2.0.13",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
