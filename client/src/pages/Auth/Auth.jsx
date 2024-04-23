@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 import { signup, login } from '../../actions/auth';
 import './Auth.css'
 
+const allowedDomains = ['vitbhopal.ac.in', 'ambika.com'];
+
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [name, setName] = useState("");
@@ -24,6 +26,11 @@ const Auth = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
+    const emailDomain = email.split('@')[1];
+    if (!allowedDomains.includes(emailDomain)) {
+      toast.error("Enter VITBHOPAL Email-ID");
+      return toast.error("Email is not allowed!");
+    }
     if (!email && !password) {
       return toast.error("Please enter email and password");
     }
@@ -65,6 +72,7 @@ const Auth = () => {
           )}
           <label htmlFor="email">
             <h4>Email</h4>
+            <p style={{fontSize:'13px',color:'#666767'}}>Restricted to VITBhopal email</p>
             <input
               type="email"
               name="email"
