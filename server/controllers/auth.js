@@ -3,9 +3,20 @@ import bcrypt from 'bcryptjs'
 
 import Users from '../models/auth.js'
 
+// List of allowed email domains
+const allowedDomains = ['vitbhopal.ac.in', 'ambika.com'];
+
 export const signUpController = async (req, res) => {
   const { name, email, password } = req.body
   try {
+    // Check if the email domain is allowed
+    const emailDomain = email.split('@')[1];
+    if (!allowedDomains.includes(emailDomain)) {
+      return res.status(404).json({
+        message: "Email domain is not allowed."
+      });
+    }
+
     const existingUser = await Users.findOne({ email })
     if (existingUser) {
       return res.status(404).json({
@@ -45,8 +56,7 @@ export const logInController = async (req, res) => {
 
       const isPasswordCorrect = await bcrypt.compare(password, existingUser.password)
 
-      if (!isPasswordCorrect) {
-        return res.status(404).json({
+      if (!isPasswordCorrect) {return res.status(404).json({
           message: "Invalid Credentials"
         })
       }
